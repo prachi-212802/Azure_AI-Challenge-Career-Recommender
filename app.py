@@ -1,42 +1,65 @@
 import streamlit as st
+import numpy as np
+import pandas as pd
+from page.home_page import *
+from surveys.openness_survey import *
+from surveys.conscientiousness_page import *  # Import survey page function
+from surveys.extraversion_survey import *  # Import survey page function
+from surveys.neuroticism_survey import *  # Import survey page function
+from surveys.agreeable_survey import *  # Import survey page function
+from surveys.eduction_survey import *  # Import survey page function
+from surveys.work_environment_survey import *  # Import survey page function
+from surveys.interest_survey import *
+from surveys.skills_survey import *
+from page.result import *
+from page.info_form import *
 
-# Function to recommend career based on skills and experience
-def recommend_career(skills, experience):
-    recommendations = []
-    
-    # Example recommendation logic
-    if "Python" in skills and experience >= 3:
-        recommendations.append("Software Developer")
-    if "Machine Learning" in skills and experience >= 2:
-        recommendations.append("Data Scientist")
-    if "Business Analysis" in skills and experience >= 1:
-        recommendations.append("Business Analyst")
-    if "Project Management" in skills and experience >= 3:
-        recommendations.append("Project Manager")
-    
-    if not recommendations:
-        return ["Explore more skills and experience to find the best fit."]
-    return recommendations
 
-# Streamlit UI
-st.title("Career Recommendation App")
 
-# Form for user input
-with st.form(key='career_form'):
-    st.header("Enter Your Skills and Experience")
 
-    # Two inputs for skills and experience
-    skills_input = st.text_input("Enter your skills (comma-separated):", "Python, Machine Learning")
-    experience_input = st.number_input("Enter your years of experience:", min_value=0, max_value=50, value=3)
 
-    # Submit button
-    submit_button = st.form_submit_button(label="Get Career Recommendations")
 
-# Processing the input and displaying recommendations
-if submit_button:
-    skills_list = [skill.strip() for skill in skills_input.split(",")]
-    career_options = recommend_career(skills_list, experience_input)
-    
-    st.subheader("Recommended Careers:")
-    for career in career_options:
-        st.write(f"- {career}")
+################################################### State to track the current page
+if 'page' not in st.session_state:
+    st.session_state.page = "home_page"  # Default to the first page
+
+################################################### Navigation function
+def go_to_page(page_name):
+    st.session_state.page = page_name
+
+
+if st.session_state.page == "home_page":
+    home_page(go_to_page)
+
+elif st.session_state.page == "info_page":
+    info_page(go_to_page)
+
+elif st.session_state.page == "openness":
+    openness_page(go_to_page)
+
+elif st.session_state.page == "conscientiousness":
+    conscientiousness_page(go_to_page)  
+
+elif st.session_state.page == "extraversion":
+    extraversion_page(go_to_page)  
+
+elif st.session_state.page == "agreeableness":
+    agreeableness_page(go_to_page) 
+
+elif st.session_state.page == "neuroticism":
+    neuroticism_page(go_to_page) 
+
+elif st.session_state.page == "education":
+    education_page(go_to_page) 
+
+elif st.session_state.page == "work_environment":
+    work_environment_page(go_to_page) 
+
+elif st.session_state.page == "interest":
+    interests_page(go_to_page) 
+
+elif st.session_state.page == "skills":
+    skills_page(go_to_page) 
+
+elif st.session_state.page == "end_survey":
+    results_page(go_to_page)
