@@ -47,8 +47,8 @@ Follow these steps to run the project locally:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/career-path-recommender.git
-   cd career-path-recommender
+   git clone https://github.com/prachi-212802/Azure_AI-Challenge-Career-Recommender.git
+   cd Azure_AI-Challenge-Career-Recommender
 
 
 ## 🌐 Access the App
