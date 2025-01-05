@@ -1,2 +1,3 @@
-#!/bin/bash
-streamlit run app.py
+echo "Starting app..." 
+python -m streamlit run app.py --server.port 8000 --server.address 0.0.0.0
+echo "Startup script completed." 
